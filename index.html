@@ -20,42 +20,68 @@
     <title>Arthur Duboks | Frontend Developer, Montreal</title>
     <link rel="icon" type="image/x-icon" href="./assets/cba_favicon.png" width="50" height="50">
     <script>
-         function acceptCookies() {
-      document.cookie = "cookiesAccepted=true; expires=Fri, 31 Dec 9999 23:59:59 GMT";
-      var cookieBox = document.querySelector('.cookie-box');
-      cookieBox.style.display = 'none';
-      loadClarity();
-    }
-    function declineCookies() {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf('=');
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
-      }
-      var cookieBox = document.querySelector('.cookie-box');
-      cookieBox.style.display = 'none';
-      window.clarity = function () {};
-    }
-    function loadClarity() {
-      var cookiesAccepted = document.cookie.match('(^|;) ?cookiesAccepted=([^;]*)(;|$)');
-      if (cookiesAccepted) {
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "hnjjz5bfd8");
-      }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      var cookiesAccepted = document.cookie.match('(^|;) ?cookiesAccepted=([^;]*)(;|$)');
-      if (!cookiesAccepted) {
+      function acceptCookies() {
+        setCookie("cookiesAccepted", "true", 365);
         var cookieBox = document.querySelector('.cookie-box');
-        cookieBox.style.display = 'block';
+        cookieBox.style.display = 'none';
+        loadClarity();
       }
-    });
-  </script>
+    
+      function declineCookies() {
+        deleteCookie("cookiesAccepted");
+        var cookieBox = document.querySelector('.cookie-box');
+        cookieBox.style.display = 'none';
+        window.clarity = function () {};
+      }
+    
+      function loadClarity() {
+        var cookiesAccepted = getCookie("cookiesAccepted");
+        if (cookiesAccepted) {
+          (function(c, l, a, r, i, t, y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "hnjjz5bfd8");
+        }
+      }
+    
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+      }
+    
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i];
+          while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1, cookie.length);
+          }
+          if (cookie.indexOf(nameEQ) === 0) {
+            return cookie.substring(nameEQ.length, cookie.length);
+          }
+        }
+        return null;
+      }
+    
+      function deleteCookie(name) {
+        setCookie(name, "", -1);
+      }
+    
+      document.addEventListener('DOMContentLoaded', function() {
+        var cookiesAccepted = getCookie("cookiesAccepted");
+        if (!cookiesAccepted) {
+          var cookieBox = document.querySelector('.cookie-box');
+          cookieBox.style.display = 'block';
+        }
+      });
+    </script>
   </head>
   <body>
     <nav class="navigation">
