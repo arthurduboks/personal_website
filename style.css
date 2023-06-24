@@ -429,6 +429,14 @@ footer p {
     width: 50%;
   }
 
+  h1 {
+    font-size: 2rem;
+  }
+
+  #myBtn {
+    font-size: 15px;
+  }
+
   .card {
     width: 80%;
   }
