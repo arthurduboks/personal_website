@@ -54,6 +54,7 @@ h5 {
 }
 
 .title {
+  position: relative;
   margin: 8px 0;
   max-width: 300px;
   line-height: 1.2;
@@ -236,7 +237,7 @@ li {
   border: none;
   outline: none;
   background-color: var(--color-purple);
-  animation: pulsate 2s ease-in-out infinite;
+  animation: pulse 2s infinite;
   color: white;
   cursor: pointer;
   padding: 5px;
@@ -247,15 +248,20 @@ li {
   background-color: var(--light-purple);
 }
 
-@keyframes pulsate {
+@keyframes pulse {
   0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
     transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
   }
-  50% {
-    transform: scale(1.2);
-  }
+
   100% {
-    transform: scale(1);
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
 
@@ -429,10 +435,6 @@ footer p {
     width: 50%;
   }
 
-  h1 {
-    font-size: 2rem;
-  }
-
   #myBtn {
     font-size: 15px;
   }
@@ -440,6 +442,11 @@ footer p {
   .card {
     width: 80%;
   }
+
+  .cookie-box {
+    width: 250px;
+  }
+
   .skill-card {
     width: 80%;
   }
