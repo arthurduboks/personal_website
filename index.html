@@ -8,6 +8,7 @@
       name="description"
       content="Arthur Duboks is a skilled Frontend Developer with additional skills in SEO and marketing, creating visually stunning websites that drive organic traffic and deliver exceptional user experiences."
     />
+    <meta name="theme-color" content="#fbf8cc">
     <meta name="robots" content="index,follow" />
 
     <link rel="stylesheet" href="style.css" />
@@ -21,65 +22,65 @@
     <link rel="icon" type="image/x-icon" href="./assets/cba_favicon.png" width="50" height="50">
     <script>
       function acceptCookies() {
-        setCookie("cookiesAccepted", "true", 365, "/");
-        var cookieBox = document.querySelector('.cookie-box');
-        cookieBox.style.display = 'none';
-        loadClarity();
-      }
-    
-      function declineCookies() {
-        deleteCookie("cookiesAccepted", "/");
-        var cookieBox = document.querySelector('.cookie-box');
-        cookieBox.style.display = 'none';
-        window.clarity = function () {};
-      }
-    
-      function loadClarity() {
-        var cookiesAccepted = getCookie("cookiesAccepted");
-        if (cookiesAccepted) {
-          (function(c, l, a, r, i, t, y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "hnjjz5bfd8");
-        }
-      }
-    
-      function setCookie(name, value, days, path) {
-        var expires = "";
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + value + expires + "; path=" + path;
-      }
-    
-      function getCookie(name) {
-        var nameEQ = name + "=";
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i];
-          while (cookie.charAt(0) === ' ') {
-            cookie = cookie.substring(1, cookie.length);
-          }
-          if (cookie.indexOf(nameEQ) === 0) {
-            return cookie.substring(nameEQ.length, cookie.length);
-          }
-        }
-        return null;
-      }
-    
-      function deleteCookie(name, path) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + path;
-      }
-      document.addEventListener('DOMContentLoaded', function() {
-        var cookiesAccepted = getCookie("cookiesAccepted");
-        if (!cookiesAccepted) {
-          var cookieBox = document.querySelector('.cookie-box');
-          cookieBox.style.display = 'block';
-        }
-      });
+  setCookie("cookiesAccepted", "true", 365, "/");
+  const cookieBox = document.querySelector('.cookie-box');
+  cookieBox.style.display = 'none';
+  loadClarity();
+  window.clarity("consent");
+}
+function declineCookies() {
+  setCookie("cookiesAccepted", "false", 365, "/");
+  const cookieBox = document.querySelector('.cookie-box');
+  cookieBox.style.display = 'none';
+  window.clarity = function () {};
+}
+function loadClarity() {
+  const cookiesAccepted = getCookie("cookiesAccepted");
+  if (cookiesAccepted) {
+    ((c, l, a, r, i, t, y) => {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "hnjjz5bfd8");
+    window.clarity("consent");
+  }
+}
+function setCookie(name, value, days, path) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = `; expires=${date.toUTCString()}`;
+  }
+  document.cookie = `${name}=${value}${expires}; path=${path}`;
+}
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const cookies = document.cookie.split(';');
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i];
+    while (cookie.charAt(0) === ' ') {
+      cookie = cookie.substring(1, cookie.length);
+    }
+    if (cookie.indexOf(nameEQ) === 0) {
+      return cookie.substring(nameEQ.length, cookie.length);
+    }
+  }
+  return null;
+}
+function deleteCookie(name, path) {
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=${path}`;
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const cookiesAccepted = getCookie("cookiesAccepted");
+  const cookieBox = document.querySelector('.cookie-box');
+  
+  if (cookiesAccepted) {
+    cookieBox.style.display = 'none';
+  } else {
+    cookieBox.style.display = 'block';
+  }
+});
     </script>
   </head>
   <body>
@@ -200,9 +201,6 @@
           />
           <div class="contact-info">
             <p>Let's connect!</p>
-            <a href="mailto:codebyarthur@gmail.com
-            ">codebyarthur@gmail.com
-          </a>
             <a
               href="https://www.linkedin.com/in/arthur-duboks-52a172b9/"
               target="_blank"
@@ -218,11 +216,32 @@
           </div>
         </div>
         <section>
+          <h2 class="section-title" id="email-form">or say hello.</h2>
+          <form action="https://api.web3forms.com/submit" method="POST">
+    
+            <input type="hidden" name="access_key" value="9a703c9f-f66d-481a-881d-975afcff7e8e">
+    
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+    
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required>
+    
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" required></textarea>
+    
+            <input type="hidden" name="redirect" value="https://web3forms.com/success">
+    
+            <button type="submit" class="form-button">Submit Form</button>
+        </form>
+        </section>
+        <section>
           <h2 class="section-title" id="privacy-pol">about cookies.</h2>
           <div class="learn-more-container">
             <p>I added cookies to the website like a master pastry chef, not only to provide a delightful user experience but also to showcase my skills. If you're craving a taste of my cookie expertise, click the button below to learn more!</p>
             <div class="learn-more-button">Learn More</div>
             <div class="learn-more-content">
+              <h5 class="legal-txt"><b>some legal stuff.</b></h5>
               <p>We partner with Microsoft Clarity and Microsoft Advertising to capture how you use and interact with our website through behavioral metrics, heatmaps, and session replay to improve and market our products/services. Website usage data is captured using first and third-party cookies and other tracking technologies to determine the popularity of products/services and online activity. Additionally, we use this information for site optimization, fraud/security purposes, and advertising. For more information about how Microsoft collects and uses your data, visit the <a href="https://privacy.microsoft.com/en-US/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement.</a></p>
               <h5><b>behind the script.</b></h5>
               <p>In summary, the script displays a cookie box pop-up to inform the user about cookie usage. If the user clicks Accept, a cookie is set, the cookie box is hidden, and the Microsoft Clarity tracking code (if cookies are accepted) is loaded. If the user clicks Decline, any existing cookies are removed, the cookie box is hidden, and the tracking code is optionally disabled. The script ensures that the cookie box is shown only if the user has not accepted cookies before&#128584</p>
@@ -242,7 +261,7 @@
       <footer>
         <section>
           <div class="footer-content">
-            <p>To create this, I've used Figma, custom CSS and JS, Visual Code Studio, GitHub Pages, and Google Domains.
+            <p>To create this, I've used: Figma, custom CSS and JS, Visual Code Studio, GitHub Pages, Google Domains. and Cloudflare.
             </p>
             <a href="#">
             <img src="./assets/cba_logo.png" width="80" height="80" alt="logo">
@@ -252,7 +271,7 @@
       </footer>
     </div>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script>
+    <script async>
       let typed = new Typed(".auto-type", {
         strings: ["Developer"],
         typeSpeed: 200,
