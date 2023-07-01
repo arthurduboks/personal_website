@@ -105,7 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <section class="landing">
         <div class="landing-text">
           <h5 class="hello">Hey, I'm Arthur,</h5>
-          <h1 class="title">Frontend<br /><span class="auto-type"></span></h1>
+          <div class="title-wrapper">
+          <h1 class="title">Frontend<br />
+            <span class="auto-type"></span></h1>
+        </div>
           <h5 class="location">based in Montreal.</h5>
           <div class="button-wrap">
             <div class="button-background"></div>
@@ -145,11 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
         <ul>
           <li>
             <p><strong>2022 - Present</strong></p>
-            <p>NA eShop Brand Manager, Guillemot Inc., Montreal</p>
+            <p>NA eShop Brand Manager, <a class="links" href="https://www.guillemot.com/en/" target="_none" rel="noopener noreferrer">Guillemot Inc.</a>, Montreal</p>
           </li>
           <li>
             <p><strong>2022 - Present [Part-Time]</strong></p>
-            <p>L1 Tech Support, Debutify, Remote</p>
+            <p>L1 Tech Support, <a class="links" href="https://debutify.com/" target="_none" rel="noopener noreferrer">Debutify</a>, Remote</p>
           </li>
           <li>
             <p><strong>2021 - 2022</strong></p>
@@ -193,9 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="skill-card">
           <img src="./assets/marketing_rocket_icon.png" alt="Marketing Icon">
           <h5><b>Marketing</b></h5>
-          <p>I'm your one-stop-shop for all things Google Ads, Meta Ads, and e-commerce marketing. With a pinch of SEO sorcery, I'll help you summon a wave of traffic to your website. Experienced in Shopify,
-            Magento, GTM, and GA4.
-          </p>
+          <p>Welcome to your ultimate destination for <a class="links" href="https://ads.google.com/" target="_none" rel="noopener noreferrer">Google Ads</a>, <a class="links" href="https://www.facebook.com/business/ads" target="_none" rel="noopener noreferrer">Meta Ads</a>, and e-commerce marketing mastery. Prepare to witness the enchantment of SEO sorcery as I guide you towards a surge of visitors to your website. Equipped with expertise in <a class="links" href="https://www.shopify.com/" target="_none" rel="noopener noreferrer">Shopify</a>, <a class="links"href="https://magento.com/" target="_none" rel="noopener noreferrer">Magento</a>, <a class="links" href="https://tagmanager.google.com/" target="_none" rel="noopener noreferrer">GTM</a>, and <a class="links" href="https://analytics.google.com/analytics/web/" target="_none" rel="noopener noreferrer">GA4</a>, I am your all-in-one solution for online success.</p>
         </div>
       </section>
 
@@ -270,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <footer>
         <section>
           <div class="footer-content">
-            <p>To create this, I've used: Figma, custom CSS and JS, Visual Code Studio, GitHub Pages, Google Domains. and Cloudflare.
+            <p>To create this, I've used: Figma, custom CSS and JS, Visual Code Studio, GitHub Pages, Google Domains, and Cloudflare.
             </p>
             <a href="#">
             <img src="./assets/cba_logo.png" width="80" height="80" alt="logo">
@@ -280,47 +281,14 @@ document.addEventListener('DOMContentLoaded', () => {
       </footer>
     </div>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script async>
+    <script>
       let typed = new Typed(".auto-type", {
-        strings: ["Developer"],
-        typeSpeed: 200,
-        backSpeed: 200,
-        loop: false,
-      });
+  strings: ["Developer"],
+  typeSpeed: 200,
+  backSpeed: 200,
+  loop: false,
+});
     </script>
-    <script async>
-      let mybutton = document.getElementById("myBtn");
-      window.onscroll = function () {
-        scrollFunction();
-      };
-      function scrollFunction() {
-        if (
-          document.body.scrollTop > 20 ||
-          document.documentElement.scrollTop > 20
-        ) {
-          mybutton.style.display = "block";
-        } else {
-          mybutton.style.display = "none";
-        }
-      }
-      function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-      }
-    </script>
-    <script async>
-      const learnMoreButton = document.querySelector('.learn-more-button');
-      const learnMoreContent = document.querySelector('.learn-more-content');
-      learnMoreContent.style.display = 'none';
-      learnMoreButton.addEventListener('click', () => {
-        if (learnMoreContent.style.display === 'none') {
-          learnMoreContent.style.display = 'block';
-          learnMoreButton.textContent = 'Close';
-        } else {
-          learnMoreContent.style.display = 'none';
-          learnMoreButton.textContent = 'Learn More';
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
