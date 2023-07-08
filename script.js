@@ -26,3 +26,32 @@ learnMoreButton.addEventListener("click", () => {
     learnMoreButton.textContent = "Learn More";
   }
 });
+const form = document.getElementById("myForm");
+
+window.onload = function () {
+  storeFormValues();
+};
+function storeFormValues() {
+  const formElements = form.elements;
+  for (let i = 0; i < formElements.length; i++) {
+    const element = formElements[i];
+    if (element.type !== "submit") {
+      sessionStorage.setItem(element.name, element.value);
+    }
+  }
+}
+function resetFormValues() {
+  const formElements = form.elements;
+  for (let i = 0; i < formElements.length; i++) {
+    const element = formElements[i];
+    if (element.type !== "submit") {
+      element.value = sessionStorage.getItem(element.name) || "";
+    }
+  }
+}
+window.onbeforeunload = function () {
+  resetFormValues();
+};
+
+const codeContent = document.getElementById("code-content");
+codeContent.textContent = 'console.log("Hello, world!");';
